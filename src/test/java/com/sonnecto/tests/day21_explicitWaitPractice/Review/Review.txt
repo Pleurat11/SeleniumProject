@@ -1,0 +1,47 @@
+Maven LifeCycle
+    Mvn clean test -> we used this command to run all the tests.
+
+    Maven is a build tool. It is the most popular build tool.
+
+    Build -> when we create a project and write application code.
+             In order to make it available for other apps to use, it needs
+                to be deployed and running in server.
+                    Ex : When we go to google.com, it will go to google page.
+                         It means google app was deployed to server and we as users can access it.
+
+    To reach the deployment level, the project needs to go through a number of steps.
+    Those steps are done using maven, and they are called maven life cycle.
+
+        validate-> it validates the project that has no errors.
+        compile -> compiles java classes.
+        test-> runs all the tests in the package.
+        package-> will run all the tests and also create a JAR file for your project.
+                   Using that JAR file your maven project can be deployed and shared in mvnrepository.
+        install-> it makes sure all dependencies are downloaded and also creates a jar file for your project.
+
+        clean-> delete the target folder in the project.
+                At work when I get my project, I always run:
+                    mvn clean install -U
+                        -U -> forcefully checks each dependency
+                    the above command will first delete the target folder.
+                        checks each dependency.
+                        compiles every java class.
+                        runs all tests.
+                        creates a jar file for your project.
+                    Jar is like a zip file, it contains all our classes and packages in same jar file
+                    Java Archive File.
+
+    mvn clean install -U
+        click ENTER
+            if mvn is not recognized error appears.
+                CTRL+ENTER fixes this issue.
+        To stop the tets : CTRL+Q
+
+=================================================================================================================
+
+    How do you run automated tests using maven?
+
+    I use mvn clean test to run the tests
+
+    mvn clean install -U -> can be used to run all maven lifecycle steps.
+===============================================================================================================

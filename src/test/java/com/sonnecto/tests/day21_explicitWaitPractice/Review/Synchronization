@@ -1,0 +1,68 @@
+
+    How do you handle synchronization issues in Selenium?
+        I use either implicit wait or explicit wait when it comes to synchronization.
+
+        Implicit wait:
+                      Waits until element is found in the HTML(DOM).
+        We type the implicit wait method once and it applies to all
+        the elements we find.
+
+        driver.manage.timeouts.implicitlyWait(10, TimeUnit.SECONDS);
+
+        Above command affects the findElement(s) methods.
+            It will make sure that Selenium waits for the element to appear up to 10 seconds.
+                If element appears in 2 secs, it will not keep waiting.
+                    If element does not appear in 10 secs, it will throw NoSuchElementException.
+-------------------------------------------
+
+    What if I want to wait for certain condition of particular webElement? like button is enabled, link clickable ...
+
+        In those cases we use EXPLICIT wait.
+        This wait has many useful conditional waiting commands.
+
+    What was your challenge in your project?
+
+        My application uses many AJAX calls, and I kept getting different exceptions.
+            So I used explicit wait to handle the synchronization issues.
+                AJAX -> Asynchronous Javascript and XML
+            Your page does not refresh completely.
+                It only reloads partially. Only certain section of the page reloads.
+            So selenium needs to wait until certain element is visible or enabled etc.
+
+==================================================================================================
+
+    Also sometimes elements are hidden but they are in the HTML
+        So findElement method will be able to locate them, but we can wait for
+            any other actions like click, sendKeys
+--------------------------
+    Explicit wait:
+        1)WebDriver wait class object and pass a driver and time out seconds to constructor.
+
+        2)We need to use ExpextedConditions class method for webelement or whole page.
+===================================================================================================
+
+    Thread.sleep(1000); -> hardcoded wait time, comes with java. Should be avoided as much as possible.
+                           It does not have any conditions and slows down execution of the app.
+=====================================================================================================
+
+    Difference between implicit wait and explicit wait?
+        Implicit wait -> time is set once globally and applies to all steps.
+                         Works with findElement method and waits until element is present in HTML/DOM(DocumentObjectModel).
+                         Stops waiting as soon as element is found in HTML.
+                         Will throw NoSuchElementException if element does not appear in HTML during the timeout.
+
+        Explicit wait -> is applied to a specific element on the page.
+                         Can be applied with different conditions that are available in ExpectedConditions class.
+                         Stops waiting when a certain condition is met.
+                         Throws TimeOutException if condition is not met within the specified given time.
+  ========================================================================================================================
+
+    WebDriverWait class is used for Explicit wait in Selenium.
+        We specify our driver object and timeout seconds in constructor.
+
+    wait.until() -> method is used to wait until certain condition becomes true.
+
+    visibiltyOfElementLocated() -> this method accepts a By locator and waits until it's visible.
+
+    textToBe()-> accepts(By.locator, expectedText)
+======================================================================================================================

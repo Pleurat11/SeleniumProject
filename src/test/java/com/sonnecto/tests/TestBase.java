@@ -1,0 +1,24 @@
+package com.sonnecto.tests;
+
+import com.github.javafaker.Faker;
+import com.sonnecto.utils.Driver;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.interactions.Actions;
+import org.testng.annotations.AfterMethod;
+import org.testng.annotations.BeforeMethod;
+
+public abstract class TestBase {
+    protected WebDriver driver;
+    protected Faker faker = new Faker();
+    protected Actions actions;
+
+    @BeforeMethod
+    public void setUp() {
+        driver = Driver.getDriver();
+        actions = new Actions(driver);
+    }
+    @AfterMethod
+    public void tearDown() {
+        // Driver.closeDriver();
+    }
+}

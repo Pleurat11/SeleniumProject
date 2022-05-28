@@ -1,0 +1,75 @@
+    What is iFrame? :
+                     It's a page inside a page, basically HTML inside HTML.
+    How do you handle iframes?
+                     We need to switch to iframe to be able to do any action on any web element inside of it.
+    How many ways you know to switch between frames?
+        3 ways
+        1)Index
+        2)Id,name
+        3)WebElement
+
+================================================================================================================
+
+TestBase is the parent of all the tests in our framework, by extending our test cases we can easily handle
+before and after methods of our test cases.
+
+
+Actions review
+              Actions class: is used for advanced mouse and keyboard actions.
+How to use Actions?
+    First create an object of Actions Class.
+    Second, we need to pass driver as a parameter.
+    Third, we use the object created to reach actions methods.
+    Fourth, we need to use perform() method at the end of the statement.
+
+    Methods: action.moveToElement().perform();
+             action.doubleClick().perform();
+
+===================================================================================================================
+
+    If you have a WebElement that disappears afet a certain time, we can stop HTML in debug mode:
+        How: Inspect page, click on Sources, then click F8 or CTRL+\
+
+====================================================================================================================
+
+    POM: Page Object Model review
+         What is POM Design Pattern?
+            Basically, we create JAVA classes for each page on our project.
+            We are storing useful WebElements(reusable), methods
+         How do we implement POM Design?
+            Constructor: PageFactory class from Selenium
+                Constructor gets 2 parameters: (driver object, this(object of the specific class))
+
+         Advantages:
+            -Reusability
+            -Easy to maintain
+            -Easy to explain to non-technical people
+            -Handles StaleElementException(PageFactory does this for us)=
+
+   *** Between POM pages, we can create inheritance relationships.
+        If you have a page which is the default(you see it wherever you navigate) page, then you define it
+            as parent of other POM pages.
+
+            Homework: Create POM pages for allProducts and Order page.
+
+
+====================================================================================================================
+    Explicitly Wait
+
+    IQ: How do you handle synchronization in Selenium?
+        What is synchronization?
+            Moving or Working or Operating at the same time.
+                In when movies voice and picture do not operate together.
+
+    In Web Automation: Java is fast, web page is slower, we need to handle this synchronization issue
+        otherwise our code will break.
+
+    1. Static Wait: Thread.sleep method from Java
+    2. Dynamic Wait:
+                    *Implicit Wait (applies to all elements, we only need to define it one time)
+                    *Explicit Wait
+                                  Can be used to wait until Certain conditions.
+                                    -Wait until element is visible
+                                    -Wait until element is clickable
+                    Does not depend on the wait time of Implicit wait.
+                        Only applies one time. It depends on the condition you give.

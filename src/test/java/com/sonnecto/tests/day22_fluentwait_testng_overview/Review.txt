@@ -1,0 +1,80 @@
+How to handle synchronization in Selenium?
+
+     There are 2 types of waits:
+         ->Implicit Wait:
+                driver.manage().timeouts().implicitlyWait(10,TimeUnit.SECONDS);
+         ->Explicit Wait:
+                WebDriverWait, ExpectedConditions
+                WebDriverWait wait = new WebDriverWait(driver, seconds);
+                wait.until(ExpectedConditions.method(By.locator("")));
+
+         ->FluentWait: is also part of Explicit Wait.
+               We can manually specify the condition, how often to check, timeout, what exception to ignore.
+
+     When using FluentWait, we can manually specify timeouts, frequency of checking for condition
+        ignoring specific exceptions.
+
+=================================================================================================================
+
+    WebDriverWait vs FluentWait:
+        WebDriverWait extends FluentWait class
+        Both are used for explicit wait in selenium
+        We can specify conditions for the particular element
+        ->WebDriverWait we specify timeout and condition using ExpectedConditions
+        ->FluentWait we specify: timeout, polling frequency, ignoring a specific exception.
+================================================================================================================
+
+When writing page objects for our application, we can implement inheritance, abstraction.
+
+    We add a parent abstract class BasePage
+    add common variables, methods, constructor to it.
+
+    EdmundsHomePage extends BasePage
+    EdmundsNewCarPage extends BasePage
+    EdmundsCarDetailsPage extends BasePage
+==================================================================================================================
+
+    TestBase -> inherited by test classes
+                @Test
+                @BeforeMethod
+                @AfterMethod
+
+    BasePage -> inherited by Page Object classes
+                @FindBy
+
+------------------------------------
+    POM design pattern -> creating a java class for each page of the application.
+
+        BasePage:
+            -WebElements that are common for every page.
+            -Constructor with PageFactory.initElements
+            -Method that can be used by all pages.
+            -Anything that is common for all pages.
+
+            We don't have to create a constructor in child classes of BasePage,
+            because we created the constructor in BasePage.
+            So when we call the child classes they first run the constructor of the parent class.
+
+
+    BasePage page = new BasePage();
+    We cannot do this, we made BasePage abstract so nobody can instantiate it.
+
+    When we create object for child classes, constructor of the parent class runs first.
+=======================================================================================================
+
+    TestNG framework structure:
+        scr.test.java
+            com.sonnecto
+                pages:
+                    BasePage
+                    OtherPages for application extending BasePage
+                tests:
+                    TestBase
+                    OtherTests classes extending TestBase
+                utils
+                    Driver
+                    BrowserUtils
+                    ConfigurationReader
+
+        configuration.properties
+        pom.xml
